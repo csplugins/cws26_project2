@@ -15,6 +15,7 @@ class ViewController: UIViewController , UITextFieldDelegate{
     @IBOutlet weak var animal3: UITextField!
     @IBOutlet weak var animal4: UITextField!
     @IBOutlet weak var animal5: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -30,7 +31,6 @@ class ViewController: UIViewController , UITextFieldDelegate{
         
         // load the dictionary
         var data = NSDictionary(contentsOfFile: path) as? Dictionary<String, String>
-        
         // string from the dictionary
         var s = data?["animal1"]
         animal1.text = s
@@ -42,22 +42,23 @@ class ViewController: UIViewController , UITextFieldDelegate{
         animal4.text = s
         s = data?["animal5"]
         animal5.text = s
-        
-        /*let documentDir = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-        let url = NSURL(string: documentDir)
-        guard let docurl = url?.URLByAppendingPathComponent("AnimalList.plist")else{ return }
-        if let docurlpath = docurl.path{
-            var rdata = NSDictionary(contentsOfFile: docurlpath) as! Dictionary<String, String>
-        }
-        else{
-            var rdata = data
-        }
-        var rdata = data
-        (rdata! as NSDictionary).writeToFile(docurl, atomically: true)*/
     }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        return false
+        /*guard let path = NSBundle.mainBundle().pathForResource("AnimalList", ofType: "plist") else {
+            print("Invalid path for plist")
+            return false
+        }
+        
+        let dict = NSMutableDictionary(contentsOfFile: path)
+        dict!.setValue("Test", forKey: "animal1")
+        if dict!.writeToFile(path, atomically: true){
+            print("plist_write")
+        }else{
+            print("plist_write_error")
+        }*/
+        
+        return true
     }
 
     override func didReceiveMemoryWarning() {
